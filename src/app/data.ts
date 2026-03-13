@@ -3,6 +3,35 @@ export type ChartPoint = {
     value: number;
 };
 
+export type NetworkShare = {
+    name: string;
+    value: number;
+    color: string;
+};
+
+export type FundMetrics = {
+    nav: number;
+    totalValue: number;
+    totalValueDelta: string;
+    apy7d: string;
+    apyDelta: string;
+    managementFee: string;
+    monthlyTransferVolume: number;
+    holdersDelta: string;
+    chains: number;
+    platform: string;
+    assetClass: string;
+    minInvestment?: string;
+    custodian?: string;
+    inceptionDate?: string;
+    primaryChain?: string;
+    settlement?: string;
+    dailyVolume?: string;
+    access?: string;
+    network?: string;
+    pilotClients?: string;
+};
+
 export type TrendingToken = {
     id: string;
     name: string;
@@ -35,6 +64,15 @@ export type TrendingToken = {
     };
     priceChartData: ChartPoint[];
     volumeChartData: ChartPoint[];
+    aumChartData?: ChartPoint[];
+    marketCapByNetwork?: NetworkShare[];
+    fundMetrics?: FundMetrics;
+    howItWorks?: {
+        entities: { id: string; label: string; sublabel?: string; color: string }[];
+        steps: { number: number; label: string; from: string; to: string; color: string }[];
+        tagline: string;
+        properties: string[];
+    };
     color?: string;
     logoUrl?: string;
 };
@@ -91,15 +129,15 @@ export const TRENDING_TOKENS: TrendingToken[] = [
     image: 'placeholder',
     price: 1.0,
     priceChange24h: 0.0,
-    circulatingSupply: 2_240_000_000,
+    circulatingSupply: 1_993_940_299,
     totalSupply: null,
-    marketCap: 2_240_000_000,
+    marketCap: 1_993_940_299,
     marketCapRank: 0,
-    totalVolume24h: 15_000_000,
-    holdersCount: 120,
+    totalVolume24h: 0,
+    holdersCount: 100,
     deployedDate: '2024-03-20',
     description:
-      "BlackRock's tokenized institutional liquidity fund, backed by U.S. Treasuries, cash, and repos, with yield accruing directly in the token across multiple chains.",
+      "Tokenized institutional liquidity fund backed by U.S. Treasuries, cash, and repos. Yield accrues directly in the token across multiple chains.",
     primaryUseCase:
       'Institutional on-chain treasury management and yield-bearing collateral for structured products.',
     consensusMechanism: 'N/A (permissioned ERC-20)',
@@ -112,12 +150,12 @@ export const TRENDING_TOKENS: TrendingToken[] = [
       { date: '2025-06', title: '$1B AUM Milestone' },
     ],
     didYouKnow: [
-      'AUM reached about $2.24B on-chain, with all shares represented as tokens.',
+      'AUM reached about $1.99B on-chain, with all shares represented as tokens.',
       'Runs as a permissioned ERC-20 hub on Ethereum and extends to Solana, Polygon, Avalanche, BNB Chain, Arbitrum, Optimism, and Aptos.',
       "It is BlackRock's first tokenized fund issued via Securitize for institutional investors.",
     ],
     traditionalFinanceComparison:
-      "BUIDL's $2.24B AUM makes it the largest tokenized treasury fund—larger than many traditional money market ETFs.",
+      "BUIDL's ~$2B AUM makes it the largest tokenized treasury fund—larger than many traditional money market ETFs.",
     realWorldUseCases: [
       'Institutional on-chain treasury and liquidity management',
       'Yield-bearing collateral for financing and structured products',
@@ -134,6 +172,29 @@ export const TRENDING_TOKENS: TrendingToken[] = [
     logoUrl: '/logos/buidl.png',
     priceChartData: generatePriceChart(1.0, 0, 0.0003, 51),
     volumeChartData: generateVolumeChart(15_000_000, 0.4, 52),
+    marketCapByNetwork: [
+      { name: 'Ethereum', value: 784_900_063, color: '#93b5e6' },
+      { name: 'Solana', value: 533_254_503, color: '#e891dc' },
+      { name: 'BNB Chain', value: 505_313_002, color: '#f0b90b' },
+      { name: 'Avalanche', value: 82_432_403, color: '#e84142' },
+      { name: 'Aptos', value: 28_514_733, color: '#a8b8c8' },
+      { name: 'Arbitrum', value: 27_056_665, color: '#28a0f0' },
+      { name: 'Optimism', value: 26_255_211, color: '#ff0420' },
+      { name: 'Polygon', value: 6_213_720, color: '#8247e5' },
+    ],
+    fundMetrics: {
+      nav: 1.0,
+      totalValue: 1_993_940_299,
+      totalValueDelta: '+8.40%',
+      apy7d: '3.45%',
+      apyDelta: '▼ 0.56%',
+      managementFee: '0.20–0.50%',
+      monthlyTransferVolume: 436_430_789,
+      holdersDelta: '▼ 2.91%',
+      chains: 8,
+      platform: 'Securitize',
+      assetClass: 'U.S. Treasuries',
+    },
   },
   {
     id: 'benji',
@@ -149,13 +210,13 @@ export const TRENDING_TOKENS: TrendingToken[] = [
     marketCapRank: 0,
     totalVolume24h: 5_000_000,
     holdersCount: 1_200,
-    deployedDate: '2021-10-01',
+    deployedDate: '2021-04-01',
     description:
       "Tokenized share of Franklin Templeton's U.S. government money market fund FOBXX, investing in Treasuries, cash, and repos, with on-chain recordkeeping on public blockchains.",
     primaryUseCase:
       'Retail and institutional access to a U.S. government money market fund via blockchain.',
     consensusMechanism: 'N/A (off-chain fund, on-chain registry)',
-    allTimeHigh: { price: 1.0, date: '2021-10-01' },
+    allTimeHigh: { price: 1.0, date: '2021-04-01' },
     supplyDistribution: { circulating: 100, locked: 0, burned: 0 },
     holderConcentration: 60,
     milestones: [
@@ -186,6 +247,52 @@ export const TRENDING_TOKENS: TrendingToken[] = [
     logoUrl: '/logos/benji.png',
     priceChartData: generatePriceChart(1.0, 0, 0.0005, 61),
     volumeChartData: generateVolumeChart(5_000_000, 0.3, 62),
+    aumChartData: [
+      { time: "Apr '21", value: 20_000_000 },
+      { time: "Jul '21", value: 38_000_000 },
+      { time: "Oct '21", value: 55_000_000 },
+      { time: "Jan '22", value: 72_000_000 },
+      { time: "Apr '22", value: 95_000_000 },
+      { time: "Jul '22", value: 108_000_000 },
+      { time: "Oct '22", value: 130_000_000 },
+      { time: "Jan '23", value: 165_000_000 },
+      { time: "Mar '23", value: 195_000_000 },
+      { time: "May '23", value: 248_000_000 },
+      { time: "Jul '23", value: 270_000_000 },
+      { time: "Aug '23", value: 262_000_000 },
+      { time: "Oct '23", value: 310_000_000 },
+      { time: "Dec '23", value: 355_000_000 },
+      { time: "Feb '24", value: 390_000_000 },
+      { time: "Apr '24", value: 435_000_000 },
+      { time: "Jun '24", value: 478_000_000 },
+      { time: "Jul '24", value: 465_000_000 },
+      { time: "Sep '24", value: 520_000_000 },
+      { time: "Nov '24", value: 585_000_000 },
+      { time: "Jan '25", value: 640_000_000 },
+      { time: "Mar '25", value: 710_000_000 },
+      { time: "May '25", value: 775_000_000 },
+      { time: "Jul '25", value: 830_000_000 },
+      { time: "Sep '25", value: 895_000_000 },
+      { time: "Nov '25", value: 950_000_000 },
+      { time: "Jan '26", value: 1_005_000_000 },
+      { time: "Mar '26", value: 1_030_000_000 },
+    ],
+    fundMetrics: {
+      nav: 1.0,
+      totalValue: 1_030_000_000,
+      totalValueDelta: '+7.91%',
+      apy7d: '3.50%',
+      apyDelta: '▼ 0.74%',
+      managementFee: '0.15%',
+      monthlyTransferVolume: 0,
+      holdersDelta: '+0.19%',
+      chains: 3,
+      platform: 'Benji Investments',
+      assetClass: 'U.S. Treasuries',
+      minInvestment: '$20',
+      custodian: 'J.P. Morgan',
+      inceptionDate: 'April 2021',
+    },
   },
   {
     id: 'jpmd',
@@ -238,6 +345,44 @@ export const TRENDING_TOKENS: TrendingToken[] = [
     logoUrl: '/logos/jpmd.png',
     priceChartData: generatePriceChart(1.0, 0, 0, 71),
     volumeChartData: generateVolumeChart(1_000_000_000, 0.2, 72),
+    fundMetrics: {
+      nav: 1.0,
+      totalValue: 0,
+      totalValueDelta: '',
+      apy7d: '',
+      apyDelta: '',
+      managementFee: '',
+      monthlyTransferVolume: 0,
+      holdersDelta: '',
+      chains: 1,
+      platform: 'Kinexys',
+      assetClass: 'USD Deposits',
+      custodian: 'J.P. Morgan',
+      inceptionDate: '2019',
+      settlement: '24/7',
+      dailyVolume: '$5B+',
+      access: 'Institutional only',
+      network: 'Base',
+      pilotClients: 'B2C2, Coinbase, Mastercard',
+    },
+    howItWorks: {
+      entities: [
+        { id: 'client', label: 'Institutional Client', sublabel: 'e.g. BMW, Siemens', color: '#10b981' },
+        { id: 'jpmorgan', label: 'J.P. Morgan Bank', sublabel: 'USD custodian', color: '#38bdf8' },
+        { id: 'base', label: 'Base (L2)', sublabel: 'Public blockchain', color: '#818cf8' },
+      ],
+      steps: [
+        { number: 1, label: 'Deposit USD', from: 'client', to: 'jpmorgan', color: '#a1a1aa' },
+        { number: 2, label: 'Mint JPMD', from: 'jpmorgan', to: 'base', color: '#818cf8' },
+        { number: 3, label: 'Receive JPMD', from: 'base', to: 'client', color: '#10b981' },
+        { number: 4, label: 'Redeem → USD', from: 'client', to: 'jpmorgan', color: '#f59e0b' },
+      ],
+      tagline: 'Deposit Token — 1:1 bank-backed, interest accrues on-chain',
+      properties: [
+        '1:1 backed by USD deposits',
+        'Redeemable 24/7',
+      ],
+    },
   },
   {
     id: 'bitcoin',
