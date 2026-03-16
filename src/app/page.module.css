@@ -219,8 +219,10 @@
 }
 
 .logoBox {
-    width: clamp(64px, 7vw, 80px);
-    height: clamp(64px, 7vw, 80px);
+    width: 120px;
+    height: 120px;
+    padding: 12px;
+    box-sizing: border-box;
     background-color: rgba(255, 255, 255, 0.05);
     border: 1px solid var(--surface-border);
     border-radius: 16px;
@@ -231,6 +233,8 @@
     font-weight: bold;
     margin-bottom: 0.75rem;
 }
+
+
 
 .tokenSymbol {
     font-size: clamp(1rem, 1.4vw, 1.25rem);
@@ -270,7 +274,7 @@
 }
 
 .heroCard {
-    background-color: rgba(0, 0, 0, 0.2);
+    background-color: rgba(10, 10, 14, 0.85);
     border: 1px solid rgba(255, 255, 255, 0.15);
     border-radius: 10px;
     padding: 0.85rem 1rem;
@@ -306,7 +310,7 @@
 }
 
 .midCard {
-    background-color: rgba(0, 0, 0, 0.2);
+    background-color: rgba(10, 10, 14, 0.85);
     border: 1px solid rgba(255, 255, 255, 0.15);
     border-radius: 8px;
     padding: 0.65rem 0.75rem;
@@ -331,7 +335,7 @@
 }
 
 .fineCard {
-    background-color: rgba(255, 255, 255, 0.03);
+    background-color: rgba(10, 10, 14, 0.85);
     border: 1px solid rgba(255, 255, 255, 0.15);
     border-radius: 8px;
     padding: 0.45rem 0.65rem;
@@ -365,7 +369,7 @@
 }
 
 .statCard {
-    background-color: rgba(0, 0, 0, 0.2);
+    background-color: rgba(10, 10, 14, 0.85);
     border: 1px solid rgba(255, 255, 255, 0.15);
     border-radius: 8px;
     padding: 0.7rem 0.8rem;

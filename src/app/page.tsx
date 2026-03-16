@@ -154,9 +154,6 @@ export default function Home() {
 
       {/* Header Info */}
       <header className={styles.header}>
-        <div className={styles.headerTitle}>
-          RWA Dashboard
-        </div>
         <div className={styles.carouselProgress}>
           <span>{activeIndex + 1}/{tokenData.length}</span>
           <div className={styles.dots}>
@@ -235,12 +232,20 @@ export default function Home() {
               {activeToken.category}
               {activeToken.marketCapRank > 0 && ` • Rank #${activeToken.marketCapRank}`}
             </div>
-            <div className={styles.logoBox} style={{ borderColor: `${activeToken.color}40`, overflow: 'hidden', padding: '16px', backgroundColor: 'rgba(255, 255, 255, 0.9)' }}>
+            <div
+              className={styles.logoBox}
+              style={{ borderColor: `${activeToken.color}40` }}
+            >
               {showLogoImage ? (
                 <img
-                  src={activeToken.logoUrl}
+                  src={`/token-visualizer-carousel${activeToken.logoUrl}`}
                   alt={activeToken.name}
-                  style={{ width: '100%', height: '100%', objectFit: 'contain' }}
+                  style={{
+                    width: '100%',
+                    height: '100%',
+                    objectFit: 'contain',
+                    display: 'block',
+                  }}
                   onError={() =>
                     setImageLoadErrors((prev) => ({ ...prev, [activeToken.symbol]: true }))
                   }
@@ -375,52 +380,64 @@ export default function Home() {
               </div>
               )
             ) : (
-              <div className={styles.statsGrid}>
-                <div className={styles.statCard}>
-                  <div className={styles.statLabel}>Price</div>
-                  <div className={styles.statValue}>{formatPriceTick(activeToken.price)}</div>
-                </div>
-                <div className={styles.statCard}>
-                  <div className={styles.statLabel}>24h Change</div>
-                  <div className={`${styles.statValue} ${activeToken.priceChange24h >= 0 ? styles.green : styles.red}`}>
-                    {formatPercentChange(activeToken.priceChange24h)}
+              <div className={styles.fundStats}>
+                <div className={styles.heroRow}>
+                  <div className={styles.heroCard}>
+                    <div className={styles.statLabel}>Price</div>
+                    <div className={styles.heroValue}>{formatPriceTick(activeToken.price)}</div>
+                  </div>
+                  <div className={`${styles.heroCard} ${styles.heroAccent}`}>
+                    <div className={styles.statLabel}>24h Change</div>
+                    <div className={styles.heroValue} style={{ color: activeToken.priceChange24h >= 0 ? 'var(--green)' : 'var(--red)' }}>
+                      {formatPercentChange(activeToken.priceChange24h)}
+                    </div>
                   </div>
                 </div>
-                <div className={styles.statCard}>
-                  <div className={styles.statLabel}>Market Cap</div>
-                  <div className={styles.statValue}>{activeToken.marketCap > 0 ? formatCompactCurrency(activeToken.marketCap) : 'Private'}</div>
-                </div>
-                <div className={styles.statCard}>
-                  <div className={styles.statLabel}>24h Volume</div>
-                  <div className={styles.statValue}>{activeToken.totalVolume24h > 0 ? formatCompactCurrency(activeToken.totalVolume24h) : 'Private'}</div>
-                </div>
-                <div className={styles.statCard}>
-                  <div className={styles.statLabel}>Holders</div>
-                  <div className={styles.statValue}>{formatNumber(activeToken.holdersCount)}</div>
-                </div>
-                <div className={styles.statCard}>
-                  <div className={styles.statLabel}>Launched</div>
-                  <div className={styles.statValue}>{formatAge(activeToken.deployedDate)}</div>
-                </div>
-                <div className={styles.statCard}>
-                  <div className={styles.statLabel}>All-Time High</div>
-                  <div className={styles.statValue}>{formatPriceTick(activeToken.allTimeHigh.price)}</div>
-                </div>
-                <div className={styles.statCard}>
-                  <div className={styles.statLabel}>Consensus</div>
-                  <div className={styles.statValue} style={{ fontSize: '0.82rem' }}>{activeToken.consensusMechanism}</div>
-                </div>
-                <div className={styles.statCard} style={{ gridColumn: 'span 2' }}>
-                  <div className={styles.statLabel}>Supply</div>
-                  <div className={styles.statValue} style={{ fontSize: '0.9rem' }}>
-                    {formatSupply(activeToken.circulatingSupply, activeToken.totalSupply)}
+
+                <div className={styles.midRow}>
+                  <div className={styles.midCard}>
+                    <div className={styles.statLabel}>Market Cap</div>
+                    <div className={styles.midValue}>{activeToken.marketCap > 0 ? formatCompactCurrency(activeToken.marketCap) : 'Private'}</div>
+                  </div>
+                  <div className={styles.midCard}>
+                    <div className={styles.statLabel}>24h Volume</div>
+                    <div className={styles.midValue}>{activeToken.totalVolume24h > 0 ? formatCompactCurrency(activeToken.totalVolume24h) : 'Private'}</div>
                   </div>
                 </div>
-                <div className={styles.statCard} style={{ gridColumn: 'span 2' }}>
-                  <div className={styles.statLabel}>Primary Use Case</div>
-                  <div className={styles.statValue} style={{ fontSize: '0.86rem', lineHeight: 1.35 }}>
-                    {activeToken.primaryUseCase}
+
+                <div className={`${styles.fineRow} ${styles.fineRowWide}`}>
+                  <div className={styles.fineCard}>
+                    <div className={styles.statLabel}>Holders</div>
+                    <div className={styles.fineValue}>{formatNumber(activeToken.holdersCount)}</div>
                   </div>
+                  <div className={`${styles.fineCard} ${styles.fineAccent}`}>
+                    <div className={styles.statLabel}>Launched</div>
+                    <div className={styles.fineValue}>{formatAge(activeToken.deployedDate)}</div>
+                  </div>
+                  <div className={styles.fineCard}>
+                    <div className={styles.statLabel}>Supply</div>
+                    <div className={styles.fineValue} style={{ fontSize: '0.75rem' }}>
+                      {formatSupply(activeToken.circulatingSupply, activeToken.totalSupply)}
+                    </div>
+                  </div>
+                  {activeToken.category !== 'Stablecoin' && (
+                  <div className={`${styles.fineCard} ${styles.fineAccent}`}>
+                    <div className={styles.statLabel}>All-Time High</div>
+                    <div className={styles.fineValue}>{formatPriceTick(activeToken.allTimeHigh.price)}</div>
+                  </div>
+                  )}
+                  {!activeToken.consensusMechanism.startsWith('N/A') && (
+                  <div className={styles.fineCard}>
+                    <div className={styles.statLabel}>Consensus</div>
+                    <div className={styles.fineValue} style={{ fontSize: '0.75rem' }}>{activeToken.consensusMechanism}</div>
+                  </div>
+                  )}
+                  {activeToken.category !== 'Stablecoin' && (
+                  <div className={`${styles.fineCard} ${styles.fineAccent}`}>
+                    <div className={styles.statLabel}>ATH Date</div>
+                    <div className={styles.fineValue}>{activeToken.allTimeHigh.date}</div>
+                  </div>
+                  )}
                 </div>
               </div>
             )}

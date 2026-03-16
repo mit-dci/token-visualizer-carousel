@@ -244,7 +244,7 @@ export const TRENDING_TOKENS: TrendingToken[] = [
       networkSecurity: 'SEC-registered, regulated fund structure',
     },
     color: '#3b82f6',
-    logoUrl: '/logos/benji.png',
+    logoUrl: '/logos/Benji_Logo.png',
     priceChartData: generatePriceChart(1.0, 0, 0.0005, 61),
     volumeChartData: generateVolumeChart(5_000_000, 0.3, 62),
     aumChartData: [
@@ -342,7 +342,7 @@ export const TRENDING_TOKENS: TrendingToken[] = [
       networkSecurity: 'Permissioned network, J.P. Morgan operated',
     },
     color: '#10b981',
-    logoUrl: '/logos/jpmd.png',
+    logoUrl: '/logos/JPM_logo_2008_DIGITAL_D_White.png',
     priceChartData: generatePriceChart(1.0, 0, 0, 71),
     volumeChartData: generateVolumeChart(1_000_000_000, 0.2, 72),
     fundMetrics: {
@@ -434,6 +434,7 @@ export const TRENDING_TOKENS: TrendingToken[] = [
       networkSecurity: '~600 EH/s hash rate',
     },
     color: '#f7931a',
+    logoUrl: '/logos/bitcoin-btc-logo.png',
     priceChartData: [
       { time: 'Feb 9', value: 70394.00 },
       { time: 'Feb 10', value: 69038.50 },
@@ -549,6 +550,7 @@ export const TRENDING_TOKENS: TrendingToken[] = [
       networkSecurity: '~1M staked ETH, 900K+ validators',
     },
     color: '#627eea',
+    logoUrl: '/logos/ethereum-eth-logo.png',
     priceChartData: [
       { time: 'Feb 9', value: 2082.92 },
       { time: 'Feb 10', value: 2014.75 },
@@ -619,7 +621,7 @@ export const TRENDING_TOKENS: TrendingToken[] = [
     name: 'USD Coin',
     symbol: 'USDC',
     category: 'Stablecoin',
-    image: '/usd-coin-usdc-logo.png',
+    image: 'placeholder',
     price: 1.0,
     priceChange24h: 0.02,
     circulatingSupply: 37_000_000_000,
@@ -664,6 +666,7 @@ export const TRENDING_TOKENS: TrendingToken[] = [
       networkSecurity: 'Regulated reserves, monthly attestations',
     },
     color: '#2775ca',
+    logoUrl: '/logos/usd-coin-usdc-logo.png',
     priceChartData: generatePriceChart(1.0, 0, 0.001, 21),
     volumeChartData: [
       { time: 'Feb 9', value: 13247035 },
@@ -748,6 +751,7 @@ export const TRENDING_TOKENS: TrendingToken[] = [
       networkSecurity: 'Daily attestations, reserve backing',
     },
     color: '#26a17b',
+    logoUrl: '/logos/tether-usdt-logo.png',
     priceChartData: generatePriceChart(1.0, 0, 0.001, 31),
     volumeChartData: [
       { time: 'Feb 9', value: 11949813 },
@@ -832,6 +836,7 @@ export const TRENDING_TOKENS: TrendingToken[] = [
       networkSecurity: '~2,000 validators',
     },
     color: '#9945ff',
+    logoUrl: '/logos/solana-sol-logo.png',
     priceChartData: [
       { time: 'Feb 9', value: 86.50 },
       { time: 'Feb 10', value: 84.00 },
